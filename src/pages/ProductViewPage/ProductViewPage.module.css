@@ -1,0 +1,29 @@
+/* :root { ... suas variáveis de cor ... } (se não globais) */
+
+.pageContainer {
+  padding-top: 10px; /* Pequeno padding no topo se o Layout não for suficiente ou se a primeira Section não tiver noBorderTop */
+  /* Outros estilos específicos do contêiner da página, se necessário */
+}
+
+.statusMessage {
+  /* Classe genérica para mensagens de carregamento ou erro */
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.2em;
+  color: var(--dark-gray-2-color, #474747);
+  min-height: 200px; /* Garante algum espaço para a mensagem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Opcional: Variações para mensagens de erro */
+.errorMessage {
+  /* Herda de statusMessage, mas pode ter cor específica */
+  /* color: var(--error-color, #EE4266); */ /* Se quiser destacar erro com cor */
+}
+
+/* Seção de produtos relacionados */
+.relatedProductsSection {
+  margin-top: 40px; /* Espaçamento maior antes dos produtos relacionados */
+}

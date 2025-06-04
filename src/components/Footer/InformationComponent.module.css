@@ -1,0 +1,39 @@
+/* :root { --white-color: #FFFFFF; --cinza-claro-2-color: #CCCCCC; } */
+
+.infoBlock {
+  flex: 1; /* Ocupa espaço disponível igualmente */
+  min-width: 180px; /* Largura mínima antes de quebrar */
+  margin: 0 10px; /* Espaçamento lateral */
+  padding: 0 10px; /* Espaçamento interno, caso necessário */
+}
+
+.infoTitle {
+  font-size: 1.1em; /* Tamanho relativo ao pai (Footer) */
+  margin-bottom: 20px; /* Aumentado para mais respiro */
+  font-weight: 700; /* Bold */
+  color: var(--white-color, #FFFFFF); /* Conforme README */
+  text-transform: uppercase; /* Opcional: para dar um estilo mais formal ao título */
+  letter-spacing: 0.5px;   /* Opcional: espaçamento entre letras */
+}
+
+.infoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.infoListItem {
+  margin-bottom: 12px; /* Espaçamento entre itens da lista */
+}
+
+.infoLink {
+  color: var(--white-color, #FFFFFF); /* Conforme README */
+  text-decoration: none;
+  font-size: 0.9em; /* Tamanho relativo */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.infoLink:hover {
+  color: var(--cinza-claro-2-color, #CCCCCC); /* Cor mais clara no hover ou sua cor secundária/primária */
+  text-decoration: underline;
+}

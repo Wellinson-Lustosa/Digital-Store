@@ -1,0 +1,96 @@
+/* :root { ... (variáveis de cor do README) ... } */
+
+.optionsContainer {
+  margin: 25px 0; /* Aumentei a margem vertical */
+}
+
+.optionGroup {
+  margin-bottom: 20px; /* Espaçamento entre grupos de opções (ex: Cor, Tamanho) */
+}
+
+.optionLabel {
+  display: block;
+  margin-bottom: 10px; /* Espaço entre o label e os botões de opção */
+  font-weight: 600; /* Semibold */
+  font-size: 1em; /* Tamanho relativo ao contexto */
+  color: var(--dark-gray-2-color, #474747);
+}
+
+.optionsListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espaçamento entre botões de opção */
+}
+
+.optionsList {
+  /* Novo wrapper para os botões para permitir flex-wrap */
+  display: flex;
+  flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha */
+  gap: 8px; /* Espaçamento entre os botões */
+}
+
+.optionItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--cinza-claro-2-color, #cccccc); /* Borda padrão */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  box-sizing: border-box;
+  padding: 0; /* Removido padding base, será específico por tipo/shape */
+  background-color: var(--white-color, #ffffff); /* Fundo padrão */
+}
+
+/* --- Estilos para SHAPE --- */
+.squareShape {
+  height: 46px; /* Conforme README */
+  min-width: 46px; /* Para garantir que seja ao menos um quadrado se for só cor ou texto curto */
+}
+
+.circleShape {
+  width: 31px; /* Conforme README */
+  height: 31px; /* Conforme README */
+  border-radius: 50%;
+}
+
+/* --- Estilos para TYPE --- */
+.textType {
+  font-size: 16px; /* README diz 24px. Se for estrito, a altura de 46px do .squareShape pode precisar de ajuste ou line-height cuidadoso. */
+  color: var(--dark-gray-2-color, #474747);
+}
+.textType.squareShape {
+  padding: 0 15px; /* Padding horizontal para texto dentro do quadrado */
+}
+.textType.circleShape {
+  /* Texto em círculo pequeno pode ser difícil de acomodar, mas se necessário: */
+  padding: 0 5px;
+  line-height: 31px; /* Tenta centralizar verticalmente */
+  text-align: center;
+  overflow: hidden; /* Esconde texto que não cabe */
+  white-space: nowrap;
+}
+
+/* --- Estilo para SELEÇÃO --- */
+.optionSelected {
+  border: 2px solid var(--primary-color, #c92071) !important; /* !important para sobrepor a borda de 1px */
+  /* Para compensar o aumento da borda e evitar "pulo" no layout,
+     podemos ajustar o padding ou usar box-shadow para o estado não selecionado.
+     Outra abordagem é usar outline para seleção, que não afeta o layout box model.
+     Exemplo com outline (descomente e ajuste .optionItem se usar):
+     outline: 2px solid var(--primary-color, #C92071);
+     outline-offset: -2px; // Outline para dentro da borda original
+  */
+}
+
+/* Foco para acessibilidade */
+.optionItem:focus-visible {
+  outline: 2px solid var(--primary-color, #c92071);
+  outline-offset: 2px;
+}
+
+.noOptionsText {
+  font-size: 0.9em;
+  color: var(--cinza-claro-color, #8f8f8f);
+  font-style: italic;
+}

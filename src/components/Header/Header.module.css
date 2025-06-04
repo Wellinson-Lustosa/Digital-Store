@@ -1,0 +1,109 @@
+/* Definindo variáveis CSS com sua paleta de cores (opcional, mas útil) */
+:root {
+  --primary-color: #c92071;
+  --dark-gray-2-color: #474747;
+  --cinza-claro-2-color: #cccccc;
+  --cinza-claro-3-color: #f5f5f5;
+  --white-color: #ffffff;
+}
+
+.headerContainer {
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--cinza-claro-3-color); /* Usando variável CSS */
+  background-color: var(--white-color);
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 40px;
+  position: relative; /* Para posicionar o ícone de busca dentro, se desejar */
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 15px;
+  /* Se o ícone estiver à direita e dentro, adicione padding-right */
+  padding-right: 40px; /* Espaço para o ícone */
+  border: 1px solid var(--cinza-claro-2-color);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  /* Posicionamento absoluto para colocar dentro do input */
+  position: absolute;
+  right: 10px; /* Ajuste conforme necessário */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.userActions {
+  display: flex;
+  align-items: center;
+}
+
+.registerLink {
+  font-size: 16px;
+  color: var(--dark-gray-2-color);
+  text-decoration: underline;
+  margin-right: 20px;
+}
+
+.loginButton {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  width: 114px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: none; /* Importante para links estilizados como botões */
+}
+
+.cartIcon {
+  /* Estilo para o componente SVG do carrinho */
+  width: 24px;
+  height: 24px;
+  fill: var(--dark-gray-2-color); /* Exemplo */
+  margin-left: 16px;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navLink {
+  /* Estilo base para NavLink */
+  text-decoration: none;
+  margin: 0 15px;
+  padding-bottom: 5px;
+  color: var(--dark-gray-2-color);
+  font-weight: normal;
+}
+
+.navLinkActive {
+  /* Estilo para NavLink ativo */
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: bold;
+}

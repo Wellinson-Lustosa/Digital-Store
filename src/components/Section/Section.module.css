@@ -1,0 +1,64 @@
+/* :root { ... suas variáveis de cor do README ... } */
+
+.sectionContainer {
+  margin: 40px 0;
+  padding: 30px 0;
+  border-top: 1px solid var(--cinza-claro-3-color, #f5f5f5);
+}
+
+/* Classe para remover a borda superior, se a prop noBorderTop for true */
+.noBorderTop {
+  border-top: none;
+  padding-top: 0; /* Opcional: remover padding se não houver borda */
+  /* margin-top: 0; /* Opcional: remover margem se for a primeira seção */
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between; /* Coloca título à esquerda e link à direita */
+  align-items: center; /* Alinha verticalmente título e link */
+  margin-bottom: 25px; /* Espaçamento abaixo do cabeçalho da seção (onde estava no sectionTitle) */
+}
+
+.sectionTitle {
+  font-size: 24px; /* Conforme README */
+  font-weight: 700; /* Bold para destaque */
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+  margin: 0; /* Remove margem padrão do h2, pois .sectionHeader controlará o espaçamento inferior */
+  flex-grow: 1; /* Permite que o título ocupe o espaço, empurrando o link para a direita */
+}
+
+/* Classes para alinhamento do título */
+.titleAlignLeft {
+  text-align: left;
+}
+
+.titleAlignCenter {
+  text-align: center;
+  /* Se o título estiver centralizado e houver um link, o justify-content: space-between
+     no .sectionHeader ainda empurrará o link para a direita. Se o link não existir
+     e o título for centralizado, ele ocupará todo o espaço e se centralizará.
+     Se precisar que o link também se centralize abaixo do título centralizado,
+     a estrutura do flexbox precisaria mudar para column ou o link ser posicionado de outra forma.
+     O README diz "link do lado direito alinhado vertical com o título", então space-between funciona.
+  */
+}
+
+.sectionLink {
+  /* Para o link opcional */
+  font-size: 18px; /* Conforme README */
+  color: var(--primary-color, #c92071); /* Conforme README */
+  text-decoration: none;
+  font-weight: 600; /* Semibold para dar um pouco de destaque */
+  margin-left: 15px; /* Espaço entre o título e o link, se o título for longo */
+  white-space: nowrap; /* Evita que o texto do link quebre linha */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.sectionLink:hover {
+  text-decoration: underline; /* Comportamento padrão de hover para links */
+  color: var(
+    --terciario-color,
+    #991956
+  ); /* Opcional: mudar para cor terciária no hover */
+}

@@ -1,0 +1,61 @@
+/* Variáveis da paleta (podem estar no :root global em index.css) */
+:root {
+  --dark-gray-2-color: #474747;
+  --cinza-claro-2-color: #cccccc;
+  --white-color: #ffffff;
+  --primary-color: #c92071;
+}
+
+.filterGroupContainer {
+  margin-bottom: 15px; /* Espaçamento entre diferentes FilterGroups */
+  /* O README (seção 6.2) descreve um container maior na ProductListingPage com fundo branco.
+     Este FilterGroup individual não precisa necessariamente de fundo/borda próprios se
+     estiver dentro daquele container. Se precisar, pode ser adicionado:
+     padding: 10px;
+     border: 1px solid var(--cinza-claro-3-color, #F5F5F5);
+     background-color: var(--white-color, #FFFFFF);
+     border-radius: 4px;
+  */
+}
+
+.filterGroupTitle {
+  font-size: 14px; /* Conforme README para o título do FilterGroup */
+  font-weight: 600;
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+  margin: 0 0 12px 0; /* Espaçamento abaixo do título do grupo */
+}
+
+.filterOptionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaço entre cada opção de filtro */
+}
+
+.filterLabel {
+  display: flex;
+  align-items: center;
+  font-size: 14px; /* Tamanho da fonte para o texto da opção (label) */
+  color: var(--dark-gray-2-color, #474747);
+  cursor: pointer;
+  line-height: 22px; /* Para alinhar com a altura do input */
+}
+
+.filterInput {
+  margin-right: 10px;
+  width: 22px; /* Conforme README */
+  height: 22px; /* Conforme README */
+  accent-color: var(--primary-color, #C92071); /* Cor de preenchimento quando marcado (README) */
+  cursor: pointer;
+  flex-shrink: 0; /* Para não encolher o input */
+}
+
+.filterInput:focus-visible {
+  outline: 2px solid var(--primary-color, #C92071);
+  outline-offset: 1px;
+}
+
+.noOptionsText {
+  font-size: 0.9em;
+  color: var(--cinza-claro-color, #8F8F8F);
+  font-style: italic;
+}

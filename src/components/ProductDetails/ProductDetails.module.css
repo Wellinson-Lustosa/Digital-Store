@@ -1,0 +1,114 @@
+/* :root { ... suas variáveis de cor ... } (se não globais) */
+
+.detailsContainer {
+  display: flex;
+  gap: 40px; /* Espaçamento entre galeria de imagem e informações */
+  flex-wrap: wrap; /* Permite quebra em telas menores */
+  padding: 20px 0; /* Padding vertical para a seção */
+}
+
+.imageGallery {
+  flex: 0 0 700px; /* Não cresce, não encolhe, base de 700px - conforme README */
+  width: 700px;
+  height: 570px; /* Corresponde à altura da galeria */
+  margin-bottom: 15px; /* Mantido caso haja miniaturas que não fazem parte da altura da galeria */
+}
+
+.mainImage {
+  width: 100%;
+  max-height: 600px; /* Altura máxima para a imagem principal */
+  height: auto;
+  object-fit: contain; /* Garante que a imagem seja exibida completamente */
+  border-radius: 8px;
+  border: 1px solid var(--cinza-claro-3-color, #f5f5f5);
+  background-color: var(
+    --cinza-claro-3-color,
+    #f5f5f5
+  ); /* Fundo sutil para a imagem */
+  display: block; /* Remove espaço extra abaixo da imagem */
+  margin-bottom: 15px; /* Espaço para miniaturas, se houver */
+}
+
+/* Estilos para miniaturas (exemplo, se você adicionar)*/
+
+.thumbnailList {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Permite scroll horizontal se muitas miniaturas */
+}
+
+.thumbnailImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid var(--cinza-claro-2-color, #cccccc);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.thumbnailImageActive,
+.thumbnailImage:hover {
+  opacity: 1;
+  border-color: var(--primary-color, #c92071);
+}
+
+.productInfo {
+  flex: 1; /* Ocupa o espaço restante */
+  min-width: 320px; /* Largura mínima para as informações do produto */
+  display: flex;
+  flex-direction: column; /* Organiza os itens verticalmente */
+}
+
+.productName {
+  font-size: 2.2em; /* Tamanho grande para o nome do produto */
+  font-weight: 700; /* Bold */
+  color: var(--dark-gray-color, #1f1f1f);
+  margin: 0 0 10px 0; /* Margem inferior */
+  line-height: 1.2;
+}
+
+.productSku {
+  /* Estilo opcional para SKU/código */
+  font-size: 0.9em;
+  color: var(--cinza-claro-color, #8f8f8f);
+  margin-bottom: 20px;
+}
+
+.productDescription {
+  font-size: 1em; /* Tamanho padrão de texto */
+  line-height: 1.7;
+  color: var(--dark-gray-2-color, #474747);
+  margin-bottom: 25px;
+  /* white-space: pre-line; Para preservar quebras de linha da descrição se vierem do backend */
+}
+
+.buyBoxWrapper {
+  margin-top: auto; /* Empurra o BuyBox para o final da coluna flexível */
+  padding-top: 20px; /* Espaço acima do BuyBox */
+}
+
+.loadingText {
+  font-size: 1.2em;
+  color: var(--dark-gray-2-color, #474747);
+  padding: 40px;
+  text-align: center;
+}
+
+.optionGroupWrapper {
+  margin-bottom: 20px; /* Espaço entre grupos de opções (ex: entre Tamanhos e Cores) */
+}
+
+.optionGroupTitle {
+  font-size: 1em; /* Ou 16px, conforme especificação de texto geral */
+  font-weight: 600; /* Semibold */
+  color: var(--dark-gray-2-color, #474747);
+  margin: 0 0 10px 0; /* Espaço abaixo do título do grupo de opção */
+  display: block;
+}
+
+/* O .buyBoxWrapper já existe para empurrar o BuyBox para baixo.
+   O .optionsSection dentro do BuyBox.module.css irá conter os ProductOptions.
+   Não precisamos de mais estilos aqui para o ProductOptions em si, pois ele tem seu próprio módulo.
+*/

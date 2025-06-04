@@ -1,0 +1,71 @@
+/* :root {
+  --dark-gray-color: #1F1F1F;
+  --white-color: #FFFFFF;
+  --cinza-claro-2-color: #CCCCCC;
+} */
+
+.footer {
+  background-color: var(--dark-gray-color, #1F1F1F); /* Conforme README */
+  color: var(--white-color, #FFFFFF); /* Conforme README */
+  padding: 50px 20px 30px 20px;
+  font-size: 14px; /* Ajuste base, o README não especifica um tamanho geral para o footer, apenas para elementos específicos */
+}
+
+.footerContentWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+}
+
+.companyInfo {
+  flex: 1.5;
+  min-width: 250px;
+  margin-right: 20px;
+}
+
+.companyDescription {
+  font-size: 0.9em; /* Relativo a 14px = ~12.6px */
+  line-height: 1.7;
+  margin: 20px 0;
+  color: var(--cinza-claro-2-color, #CCCCCC); /* Descrição um pouco menos proeminente */
+}
+
+.socialIconsContainer {
+  display: flex;
+  align-items: center;
+  gap: 18px; /* Aumentei um pouco o gap */
+}
+
+.socialLink {
+  color: var(--white-color, #FFFFFF);
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.socialLink:hover {
+  opacity: 0.8;
+}
+
+.socialLink svg { /* Assumindo que os SVGs serão configurados para herdar cor */
+  width: 28px; /* Aumentei um pouco o tamanho dos ícones sociais */
+  height: 28px;
+  fill: currentColor;
+}
+
+.footerDivider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Linha sutil branca com transparência */
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.copyrightText {
+  text-align: center;
+  font-size: 0.85em; /* Relativo a 14px = ~11.9px */
+  color: var(--cinza-claro-2-color, #CCCCCC);
+  max-width: 1200px;
+  margin: 0 auto;
+}

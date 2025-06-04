@@ -1,0 +1,23 @@
+/* src/pages/AboutPage/AboutPage.module.css (e similares) */
+.pageContainer {
+  padding: 20px 0;
+  line-height: 1.7;
+  color: var(--dark-gray-2-color, #474747);
+}
+
+.pageTitle {
+  /* Já estilizado pelo Section, mas pode ter ajustes */
+  /* font-size: 2em; */
+  /* color: var(--dark-gray-color, #1F1F1F); */
+  /* margin-bottom: 25px; */
+}
+
+.pageContent p {
+  margin-bottom: 15px;
+}
+
+.pageContent ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,80 @@
+/* :root { ... suas variáveis de cor do README ... } */
+
+.cardContainer {
+  background-color: var(--white-color, #ffffff);
+  border: 1px solid var(--cinza-claro-2-color, #cccccc); /* Conforme cores do README */
+  border-radius: 4px; /* O sketch do product-card.png parece ter bordas menos arredondadas */
+  padding: 15px; /* Ajuste o padding conforme o visual desejado */
+  text-align: left; /* O sketch product-card.png sugere alinhamento à esquerda para textos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; Não mais necessário se não houver botão "Ver Produto" */
+  height: 100%;
+}
+
+.cardContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.imageLink {
+  /* Se o card inteiro for clicável, o link pode envolver tudo */
+  display: block;
+  text-decoration: none;
+  color: inherit; /* Herda a cor do texto do pai */
+}
+
+.productImage {
+  width: 100%; /* Para ocupar o espaço do card */
+  height: 321px; /* Altura especificada no README */
+  object-fit: cover; /* Ou 'contain', dependendo de como as imagens são e como devem ser exibidas */
+  margin-bottom: 15px;
+  border-radius: 4px; /* Se a imagem em si tiver borda arredondada */
+  background-color: var(--cinza-claro-3-color, #f5f5f5);
+}
+
+.productName {
+  font-size: 16px; /* Ajuste conforme o design final, README não especifica para o nome */
+  margin: 0 0 10px 0;
+  color: var(
+    --dark-gray-2-color,
+    #474747
+  ); /* Cor consistente para nomes de produto */
+  font-weight: 600;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a duas linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: calc(16px * 1.4 * 2); /* Espaço para duas linhas */
+}
+
+.priceSection {
+  margin-top: auto; /* Empurra os preços para baixo se o card for flex column */
+  /* display: flex;  Pode ser útil para alinhar preço original e com desconto */
+  /* flex-wrap: wrap; */
+  /* align-items: baseline; */
+}
+
+.originalPrice {
+  font-size: 24px; /* Conforme README */
+  color: var(--dark-gray-color, #1f1f1f); /* Conforme README */
+  font-weight: bold;
+  margin-right: 10px; /* Espaço se houver preço com desconto ao lado */
+}
+
+.originalPriceStrikethrough {
+  font-size: 18px; /* Tamanho menor para o preço riscado, conforme interpretação */
+  color: var(--light-gray-color, #8f8f8f); /* Conforme README */
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+.discountPrice {
+  font-size: 24px; /* Conforme README */
+  color: var(--dark-gray-color, #1f1f1f); /* Conforme README */
+  font-weight: bold;
+}

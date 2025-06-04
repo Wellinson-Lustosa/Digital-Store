@@ -1,0 +1,16 @@
+.logoImage {
+  /* Nome da classe para o estilo da imagem do logo */
+  width: 253px; /* Conforme README */
+  height: 44px; /* Conforme README */
+  display: block; /* Para garantir que a imagem respeite as dimensões e não tenha espaço extra */
+  object-fit: contain; /* Para garantir que o logo não seja cortado ou esticado se as dimensões da imagem original forem diferentes */
+}
+
+
+.logoLink {
+  /* Nome da classe para o link do logo */
+  display: inline-block;
+  /* Garante que o link se comporte como um bloco, permitindo padding/margin */
+  text-decoration: none;
+}
+

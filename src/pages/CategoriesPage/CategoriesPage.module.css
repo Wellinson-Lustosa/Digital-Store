@@ -1,0 +1,36 @@
+.pageContainer {
+  padding: 20px 0;
+}
+
+.pageTitle {
+  font-size: 1.8em;
+  color: var(--dark-gray-color, #1f1f1f);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.categoryList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.categoryItem {
+  background-color: var(--white-color, #ffffff);
+  padding: 20px;
+  border: 1px solid var(--cinza-claro-2-color, #cccccc);
+  border-radius: 6px;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+.categoryItem a {
+  text-decoration: none;
+  color: var(--primary-color, #c92071);
+  font-weight: 600;
+}
+
+.categoryItem:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

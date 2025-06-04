@@ -1,0 +1,84 @@
+/* :root { ... suas variáveis de cor do README ... } */
+
+.pageContainer {
+  display: flex;
+  gap: 30px; /* Espaço entre a sidebar e o conteúdo principal */
+  padding-top: 20px; /* Ou conforme o design geral da página */
+}
+
+.filtersAside {
+  width: 308px; /* Largura especificada no README para a lateral */
+  flex-shrink: 0;
+}
+
+.mainContent {
+  flex-grow: 1;
+  min-width: 0; /* Para evitar overflow em layouts flex */
+}
+
+/* --- Ordenar por (Seção 6.1 do README) --- */
+.sortSectionContainer {
+  margin-bottom: 30px;
+}
+
+.sortLabel {
+  display: block;
+  font-size: 16px; /* Conforme README */
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.sortSelect {
+  width: 100%; /* Ocupará os 308px do .filtersAside */
+  height: 60px; /* Conforme README */
+  padding: 0 15px;
+  border: 1px solid var(--cinza-claro-2-color, #CCCCCC);
+  border-radius: 4px;
+  background-color: var(--white-color, #FFFFFF);
+  color: var(--dark-gray-2-color, #474747); /* Conforme README para as opções */
+  font-size: 16px; /* Pode ser ajustado para o texto das opções */
+  cursor: pointer;
+  appearance: none; /* Remove aparência padrão para seta customizada */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23474747' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  line-height: normal; /* Reset para garantir alinhamento do texto */
+  /* padding-right precisa ser suficiente para não sobrepor a seta */
+  padding-right: 40px;
+}
+
+.sortSelect:focus {
+  outline: none;
+  border-color: var(--primary-color, #C92071);
+  box-shadow: 0 0 0 2px rgba(201, 32, 113, 0.2);
+}
+
+/* --- Filtrar por (Seção 6.2 do README) --- */
+.filterSectionContainer {
+  background-color: var(--white-color, #FFFFFF); /* Conforme README */
+  padding: 20px;
+  border-radius: 6px; /* Opcional, mas comum */
+  /* A largura de 308px é definida pelo .filtersAside */
+}
+
+.filterSectionOverallTitle { /* Título "Filtrar por" */
+  font-size: 16px; /* Conforme README */
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+  margin: 0 0 10px 0;
+  font-weight: 600;
+}
+
+.filterDivider {
+  height: 1px;
+  background-color: var(--light-gray-2-color, #CCCCCC); /* Conforme README */
+  margin-bottom: 20px;
+  border: none;
+}
+
+/* A classe .listingPageTitle que tínhamos antes pode ser usada para o título da Section principal,
+   se precisarmos de um estilo diferente do padrão do componente Section.
+   Mas o README especifica que o title da Section principal deve ser o total de produtos.
+   O componente Section já estiliza seu próprio título.
+*/

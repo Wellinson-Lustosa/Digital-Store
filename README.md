@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# Digital Store - Projeto React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é uma aplicação web front-end desenvolvida em React como parte de um exercício de curso. O objetivo é implementar as funcionalidades essenciais de uma loja digital, baseando-se em uma documentação de projeto e design visual fornecidos (Figma).
 
-## Available Scripts
+## Objetivo do Projeto
 
-In the project directory, you can run:
+Desenvolver uma aplicação web completa utilizando React, implementando funcionalidades essenciais e seguindo os requisitos mínimos descritos na documentação do projeto. As páginas principais a serem construídas são:
 
-### `npm start`
+- Página Inicial
+- Página de Listagem de Produtos
+- Página de Visualização do Produto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Estrutura do Projeto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+O projeto segue a seguinte estrutura de pastas principal:
+├── src/
+│ ├── components/ # Componentes reutilizáveis
+│ │ ├── Header
+│ │ ├── Footer
+│ │ ├── Logo
+│ │ ├── ProductListing
+│ │ ├── ProductCard
+│ │ ├── ProductOptions
+│ │ ├── BuyBox
+│ │ ├── Section
+│ │ ├── FilterGroup
+│ │ └── ProductDetails
+│ └── pages/ # Componentes de página
+│ ├── HomePage
+│ ├── ProductViewPage
+│ └── ProductListingPage
+├── App.js # Componente raiz com roteamento
+└── index.js # Ponto de entrada da aplicação

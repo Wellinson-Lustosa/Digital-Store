@@ -1,0 +1,118 @@
+/* :root { ... suas variáveis de cor do README ... } */
+
+.buyBoxContainer {
+  padding: 25px;
+  border: 1px solid var(--cinza-claro-2-color, #cccccc); /* Ou outra borda sutil se definido no Figma */
+  border-radius: 8px;
+  background-color: var(
+    --white-color,
+    #ffffff
+  ); /* Ou um fundo claro como cinza-claro-3 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaço entre os elementos principais do BuyBox */
+}
+
+.productName {
+  font-size: 32px; /* Conforme README */
+  font-weight: 700; /* Bold para destaque */
+  color: var(--dark-gray-color, #1f1f1f); /* Conforme README */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.productReference {
+  font-size: 12px; /* Conforme README */
+  color: var(--dark-gray-3-color, #666666); /* Conforme README */
+  margin-top: -10px; /* Ajuste para ficar próximo ao nome */
+  margin-bottom: 5px;
+}
+
+.ratingSection {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espaço entre a estrela e o texto de avaliações */
+  margin-bottom: 5px;
+}
+
+.starRatingBox {
+  display: inline-flex; /* Para alinhar o número e o ícone */
+  align-items: center;
+  background-color: var(--warning-color, #f6aa1c); /* Conforme README */
+  color: var(
+    --white-color,
+    #ffffff
+  ); /* O README diz que a estrela é branca, o texto do número também pode ser */
+  padding: 4px 8px;
+  border-radius: 4px; /* Conforme README */
+  font-size: 14px; /* Conforme README */
+  font-weight: 600;
+}
+
+.starRatingBox svg {
+  /* Para o ícone da estrela */
+  width: 12px;
+  height: 12px;
+  fill: var(--white-color, #ffffff); /* Conforme README */
+  margin-left: 4px; /* Espaço entre o número e a estrela */
+}
+
+.ratingText {
+  font-size: 14px; /* Conforme README */
+  color: var(--light-gray-color, #8f8f8f); /* Conforme README */
+}
+
+.priceDisplay {
+  display: flex;
+  align-items: baseline; /* Alinha pela base dos textos de preço */
+  flex-wrap: wrap; /* Permite quebra se necessário */
+  gap: 10px; /* Espaço entre os preços */
+  margin-bottom: 5px;
+}
+
+.currentPrice {
+  /* Para o preço com desconto ou o preço normal se não houver desconto */
+  font-size: 32px; /* Conforme README */
+  font-weight: 700;
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+}
+
+.originalPriceStrikethrough {
+  font-size: 16px; /* Conforme README */
+  color: var(
+    --light-gray-2-color,
+    #cccccc
+  ); /* Conforme README (light-gray-2 para preço riscado) */
+  text-decoration: line-through;
+}
+
+.productDescription {
+  font-size: 14px; /* Conforme README */
+  color: var(--dark-gray-2-color, #474747); /* Conforme README */
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.optionsSection {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.buyButton {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: var(--warning-color, #f6aa1c); /* Conforme README */
+  color: var(--white-color, #ffffff); /* Conforme README */
+  border: none;
+  border-radius: 4px;
+  font-size: 16px; /* Conforme README */
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase; /* O sketch "COMPRAR" sugere uppercase */
+  transition: background-color 0.2s ease;
+}
+
+.buyButton:hover {
+  background-color: #e0990f; /* Um tom mais escuro de 'warning' para hover */
+}

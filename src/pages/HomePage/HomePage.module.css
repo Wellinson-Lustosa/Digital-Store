@@ -1,0 +1,113 @@
+/* :root { ... suas variáveis de cor ... } (se não globais) */
+.welcomeText {
+  font-size: 1.1em;
+  color: var(--dark-gray-2-color, #474747);
+  line-height: 1.6;
+  margin-bottom: 30px; /* Espaço antes do banner promocional */
+  text-align: center; /* Opcional: centralizar o texto de boas-vindas */
+}
+
+.promoBanner {
+  background-color: var(--primary-color, #c92071);
+  color: var(--white-color, #ffffff);
+  padding: 40px 20px; /* Padding interno */
+  text-align: center;
+  margin: 30px 0; /* Margem vertical */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.promoBannerTitle {
+  font-size: 2em; /* Tamanho grande para o título do banner */
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.promoBannerText {
+  font-size: 1.1em;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.categoriesContainer {
+  display: grid; /* Usando grid para os cards de categoria */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(180px, 1fr)
+  ); /* Colunas responsivas */
+  gap: 20px; /* Espaçamento entre os cards de categoria */
+  margin-top: 10px; /* Espaço acima da grade de categorias */
+}
+
+.categoryCard {
+  background-color: var(--white-color, #ffffff);
+  border: 1px solid var(--cinza-claro-2-color, #cccccc);
+  border-radius: 6px;
+  padding: 25px 20px; /* Padding interno do card de categoria */
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600; /* Semibold */
+  color: var(--dark-gray-2-color, #474747);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer; /* Indica que é clicável */
+  text-decoration: none; /* Se for um link */
+}
+
+.categoryCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color, #c92071); /* Borda primária no hover */
+  color: var(
+    --primary-color,
+    #c92071
+  ); /* Opcional: mudar cor do texto no hover */
+}
+
+.heroGallerySection {
+  margin-bottom: 40px;
+  width: 100%; /* Ocupará a largura do mainContent do Layout */
+  /* A altura será definida pela prop 'height' do Gallery */
+  /* Para a largura de 1440px do README, precisaríamos de um container especial
+     que pudesse exceder o maxWidth do Layout.mainContent.
+     Por simplicidade, o Gallery usará width="100%" do seu container atual. */
+}
+
+/* Estilos para Coleções em Destaque (README seção 5.2) */
+.collectionsSectionContent {
+  /* Novo container para as 3 imagens de coleção */
+  display: flex;
+  justify-content: space-around; /* Ou space-between, ou use grid */
+  align-items: flex-start;
+  flex-wrap: wrap; /* Para telas menores */
+  gap: 20px; /* Espaçamento entre as imagens de coleção */
+}
+
+.collectionItem {
+  /* Para cada imagem de coleção */
+  /* O README diz "3 imagens na horizontal". Se o container .collectionsSectionContent for flex,
+     cada item pode ter um flex-basis ou width.
+     Se o container for grid, podemos usar grid-template-columns.
+     Para 3 itens, podemos dar um flex: 1 ou width aproximado. */
+  flex: 1 1 calc(33.333% - 20px); /* Exemplo para 3 colunas com gap. Ajuste! */
+  min-width: 280px; /* Para quebra em telas menores */
+  text-decoration: none; /* Se for um link */
+}
+
+.collectionItemImage {
+  width: 100%;
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 4px; /* Conforme README */
+  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.collectionItemImage:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para Produtos em Alta e Categorias Populares (se mantidas)
+   já são cobertos por ProductListing.module.css e Section.module.css
+*/

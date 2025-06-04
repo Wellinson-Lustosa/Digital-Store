@@ -1,0 +1,20 @@
+.pageContainer {
+  padding: 20px 0;
+}
+.pageTitle {
+  font-size: 1.8em;
+  color: var(--dark-gray-color, #1f1f1f);
+  margin-bottom: 20px;
+}
+.loginPrompt {
+  font-size: 1.1em;
+  color: var(--dark-gray-2-color, #474747);
+}
+.loginLink {
+  color: var(--primary-color, #c92071);
+  text-decoration: none;
+  font-weight: bold;
+}
+.loginLink:hover {
+  text-decoration: underline;
+}

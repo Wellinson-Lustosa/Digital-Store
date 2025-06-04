@@ -1,0 +1,27 @@
+/* :root { ... suas variáveis de cor ... } (se não globais) */
+
+.listingContainer {
+  display: grid;
+  /*
+    Para o minmax:
+    O ProductCard tem padding de 20px em cada lado.
+    Se quisermos que o conteúdo interno do card tenha ~240px de largura mínima,
+    o card em si teria 240px + 20px + 20px = 280px.
+    Portanto, minmax(280px, 1fr) é um bom ponto de partida.
+    Isso geralmente resulta em 3-4 colunas em desktops médios/grandes.
+    Ajuste conforme o design do Figma e o conteúdo do card.
+  */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px; /* Um pouco mais de espaço entre os cards */
+  padding: 10px 0; /* Um pequeno padding vertical para a listagem, se necessário */
+}
+
+.noProductsMessage {
+  grid-column: 1 / -1; /* Faz a mensagem ocupar todas as colunas do grid */
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1.1em;
+  color: var(--dark-gray-2-color, #474747); /* Cor para a mensagem */
+  /* background-color: var(--cinza-claro-3-color, #F5F5F5); Opcional: um fundo sutil */
+  /* border-radius: 8px; Opcional */
+}

@@ -1,0 +1,117 @@
+/* src/components/Gallery/Gallery.module.css */
+/* :root { ... suas variáveis de cor ... } */
+
+.galleryContainer {
+  position: relative; /* Para posicionamento absoluto das setas */
+  overflow: hidden; /* Garante que nada saia dos limites, especialmente com bordas arredondadas */
+  background-color: var(
+    --cinza-claro-3-color,
+    #f5f5f5
+  ); /* Fundo enquanto imagem carrega */
+}
+
+.slideViewport {
+  overflow: hidden; /* Essencial para o efeito de slide */
+  width: 100%;
+  height: 100%;
+}
+
+.slideTrack {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out; /* Animação de slide */
+}
+
+.slide {
+  flex-shrink: 0; /* Impede que os slides encolham */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ou 'contain', dependendo do que for melhor para as imagens */
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ); /* Fundo semi-transparente para as setas */
+  color: var(--white-color, #ffffff);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%; /* Setas redondas */
+  width: 40px; /* Tamanho da área clicável da seta */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.arrow:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.arrow svg {
+  width: 20px; /* Tamanho do ícone SVG dentro do botão */
+  height: 20px;
+  fill: currentColor; /* Usa a cor do texto do botão (branco) */
+}
+
+.leftArrow {
+  left: 15px;
+}
+
+.rightArrow {
+  right: 15px;
+}
+
+.arrowDisabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.thumbnailStrip {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 0 10px; /* Padding para não colar nas bordas em caso de overflow */
+  overflow-x: auto; /* Permite scroll horizontal se houver muitas miniaturas */
+}
+
+.thumbnail {
+  width: 117px; /* Conforme README */
+  height: 95px; /* Conforme README */
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent; /* Borda base para manter o layout estável */
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.thumbnailSelected {
+  border-color: var(
+    --primary-color,
+    #c92071
+  ); /* Borda primária de 2px, conforme README */
+  opacity: 1;
+}

@@ -5,66 +5,67 @@
 } */
 
 .footer {
-  background-color: var(--dark-gray-color, #1F1F1F); /* Conforme README */
-  color: var(--white-color, #FFFFFF); /* Conforme README */
-  padding: 50px 20px 30px 20px;
-  font-size: 14px; /* Ajuste base, o README não especifica um tamanho geral para o footer, apenas para elementos específicos */
+  background-color: var(--dark-gray-color, #1F1F1F);
+  color: var(--white-color, #FFFFFF);
+  padding: 60px 80px 40px 80px; /* Padding ajustado para corresponder ao Header e dar mais respiro */
+  font-size: 14px;
 }
 
 .footerContentWrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
   justify-content: space-between;
-  gap: 30px;
+  gap: 40px; /* Espaçamento entre as colunas */
   max-width: 1200px;
-  margin: 0 auto 40px auto;
+  margin: 0 auto 50px auto; /* Margem inferior aumentada antes da linha divisória */
 }
 
 .companyInfo {
-  flex: 1.5;
-  min-width: 250px;
-  margin-right: 20px;
+  flex: 1; /* Ajustado para dar um peso mais equilibrado */
+  min-width: 280px;
+  max-width: 350px; /* Largura máxima para a coluna de descrição */
 }
 
 .companyDescription {
-  font-size: 0.9em; /* Relativo a 14px = ~12.6px */
+  font-size: 14px;
   line-height: 1.7;
-  margin: 20px 0;
-  color: var(--cinza-claro-2-color, #CCCCCC); /* Descrição um pouco menos proeminente */
+  margin: 24px 0; /* Espaçamento vertical ajustado */
+  color: var(--cinza-claro-2-color, #CCCCCC);
 }
 
 .socialIconsContainer {
   display: flex;
   align-items: center;
-  gap: 18px; /* Aumentei um pouco o gap */
+  gap: 24px; /* Espaçamento entre os ícones sociais */
 }
 
 .socialLink {
   color: var(--white-color, #FFFFFF);
   display: inline-block;
-  transition: opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .socialLink:hover {
-  opacity: 0.8;
+  transform: scale(1.1);
+  opacity: 0.85;
 }
 
-.socialLink svg { /* Assumindo que os SVGs serão configurados para herdar cor */
-  width: 28px; /* Aumentei um pouco o tamanho dos ícones sociais */
-  height: 28px;
+.socialLink svg {
+  width: 24px; /* Tamanho padrão para ícones de rodapé */
+  height: 24px;
   fill: currentColor;
 }
 
 .footerDivider {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Linha sutil branca com transparência */
-  margin: 40px auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 50px auto;
   max-width: 1200px;
 }
 
 .copyrightText {
   text-align: center;
-  font-size: 0.85em; /* Relativo a 14px = ~11.9px */
+  font-size: 14px;
   color: var(--cinza-claro-2-color, #CCCCCC);
   max-width: 1200px;
   margin: 0 auto;

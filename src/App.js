@@ -1,11 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout/Layout"; // Nosso componente de Layout principal
+import Layout from "./pages/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductListingPage from "./pages/ProductListingPage/ProductListingPage";
 import ProductViewPage from "./pages/ProductViewPage/ProductViewPage";
-
-// Importando as páginas que criamos para os links do Header/Footer
 import CategoriesPage from "./pages/CategoriesPage/CategoriesPage";
 import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
@@ -17,6 +15,10 @@ import PaymentMethodsPage from "./pages/PaymentMethodsPage/PaymentMethodsPage";
 import FaqPage from "./pages/FaqPage/FaqPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage/TermsOfServicePage";
+import CartPage from "./pages/CartPage/CartPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from './pages/RegisterPage/RegisterPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'; // 1. Importe o ProtectedRoute
 
 // Placeholder para páginas ainda não completamente desenvolvidas (ex: Login, Cadastro)
 const PlaceholderPage = ({ title }) => (
@@ -40,13 +42,32 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/produtos" element={<ProductListingPage />} />
         <Route path="/product/:productId" element={<ProductViewPage />} />
-
         {/* Rotas para links do Header e Footer */}
         <Route path="/categories" element={<CategoriesPage />} />
-        <Route path="/my-orders" element={<MyOrdersPage />} />
+        <Route path="/cart" element={<CartPage />} />
+
+        {/* --- Rotas Protegidas --- */}
+        {/* Envolvemos o elemento da rota com o nosso componente ProtectedRoute */}
+        <Route
+          path="/my-orders"
+          element={
+            <ProtectedRoute>
+              <MyOrdersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <ProtectedRoute>
+              <WishlistPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ... (outras rotas públicas como /about, /faq, etc.) ... */}
         <Route path="/about" element={<AboutPage />} />
         <Route path="/security" element={<SecurityPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/payment-methods" element={<PaymentMethodsPage />} />
@@ -54,18 +75,12 @@ function App() {
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsOfServicePage />} />
 
-        {/* Rotas para Login e Cadastro */}
-        <Route path="/login" element={<PlaceholderPage title="Login" />} />
-        <Route
-          path="/register"
-          element={<PlaceholderPage title="Cadastre-se" />}
-        />
+        {/* Rotas de Login e Cadastro (não precisam de proteção) */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-        {/* Rota para página não encontrada (404) */}
-        <Route
-          path="*"
-          element={<PlaceholderPage title="404 - Página Não Encontrada" />}
-        />
+        {/* Rota 404 */}
+        <Route path="*" element={<PlaceholderPage title="404 - Página Não Encontrada" />} />
       </Routes>
     </Layout>
   );

@@ -80,17 +80,17 @@ const ProductDetails = ({ product, onOptionChange }) => {
 
       <div className={styles.productInfo}>
         <BuyBox
-          name={product.name}
-          reference={product.sku} // Usando sku como reference (README BuyBox)
-          stars={product.averageRating} // Ex: 4.7 (README BuyBox)
-          rating={
-            product.totalReviews
+          product={{
+            name: product.name,
+            sku: product.sku, // Usando sku como reference (README BuyBox)
+            averageRating: product.averageRating, // Ex: 4.7 (README BuyBox)
+            totalReviews: product.totalReviews
               ? `${product.totalReviews} avaliações`
-              : "(0 avaliações)"
-          } // Ex: (90 avaliações) (README BuyBox)
-          price={product.price} // (README BuyBox)
-          priceDiscount={product.priceDiscount} // (README BuyBox)
-          description={product.description} // (README BuyBox)
+              : "(0 avaliações)", // Ex: (90 avaliações) (README BuyBox)
+            price: product.price, // (README BuyBox)
+            priceDiscount: product.priceDiscount, // (README BuyBox)
+            description: product.description, // (README BuyBox)
+          }}
           onBuy={() =>
             console.log(
               "Comprar:",

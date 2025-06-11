@@ -1,39 +1,54 @@
 import React from "react";
 import styles from "./BuyBox.module.css";
-// Importe o ícone de estrela (ajuste o caminho se necessário)
-import { ReactComponent as StarIcon } from "../../assets/icons/star-icon.svg"; // Conforme README
+import { ReactComponent as StarIcon } from "../../assets/icons/star-icon.svg";
+import { useCart } from "../../contexts/CartContext"; // 1. Importe useCart
 
-const BuyBox = ({
-  name,
-  reference,
-  stars, // ex: 4.7
-  rating, // ex: "90 avaliações"
-  price, // Preço original
-  priceDiscount, // Preço com desconto
-  description,
-  children, // Para ProductOptions
-  onBuy, // Função para o clique do botão comprar
-}) => {
-  const formatCurrency = (value) => {
-    if (typeof value !== "number") return value;
-    return `R$ ${value.toFixed(2).replace(".", ",")}`;
+const BuyBox = ({ product, onBuy, children }) => {
+  const { addToCart } = useCart();
+
+  if (!product) return null;
+
+  const {
+    name,
+    sku,
+    averageRating,
+    totalReviews,
+    price,
+    priceDiscount,
+    description,
+  } = product;
+
+  const formatCurrency = (value) =>
+    value?.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+  const hasDiscount = typeof priceDiscount === "number" && priceDiscount < price;
+
+  const handleBuyClick = () => {
+    if (onBuy) {
+      onBuy();
+    } else {
+      console.warn(
+        "Ação de compra não definida para o BuyBox. Usando addToCart padrão sem opções específicas."
+      );
+      addToCart(product, 1, {});
+    }
   };
-
-  const hasDiscount =
-    typeof priceDiscount === "number" && priceDiscount < price;
 
   return (
     <div className={styles.buyBoxContainer}>
       {name && <h1 className={styles.productName}>{name}</h1>}
-      {reference && <p className={styles.productReference}>REF: {reference}</p>}
+      {sku && <p className={styles.productReference}>REF: {sku}</p>}
 
-      {typeof stars === "number" && rating && (
+      {typeof averageRating === "number" && totalReviews > 0 && (
         <div className={styles.ratingSection}>
           <span className={styles.starRatingBox}>
-            {stars.toFixed(1)} {/* Exibe uma casa decimal para as estrelas */}
+            {averageRating.toFixed(1)}
             <StarIcon />
           </span>
-          <span className={styles.ratingText}>({rating})</span>
+          <span className={styles.ratingText}>
+            ({totalReviews}{" "}
+            {totalReviews > 1 ? "avaliações" : "avaliação"})
+          </span>
         </div>
       )}
 
@@ -60,7 +75,11 @@ const BuyBox = ({
 
       {children && <div className={styles.optionsSection}>{children}</div>}
 
-      <button onClick={onBuy} className={styles.buyButton} type="button">
+      <button
+        onClick={handleBuyClick}
+        className={styles.buyButton}
+        type="button"
+      >
         Comprar
       </button>
     </div>

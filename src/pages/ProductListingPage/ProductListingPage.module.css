@@ -77,8 +77,92 @@
   border: none;
 }
 
-/* A classe .listingPageTitle que tínhamos antes pode ser usada para o título da Section principal,
-   se precisarmos de um estilo diferente do padrão do componente Section.
-   Mas o README especifica que o title da Section principal deve ser o total de produtos.
-   O componente Section já estiliza seu próprio título.
-*/
+/* --- Estilos para o Botão e Painel de Filtros Móvel --- */
+
+.mobileFilterButton {
+  display: none; /* Escondido no desktop */
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color, #C92071);
+  background-color: var(--white-color, #FFFFFF);
+  border: 1px solid var(--primary-color, #C92071);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobileFilterButton svg { /* Se você tiver um ícone de filtro */
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.filterOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Fica abaixo do painel de filtros, mas acima do resto */
+}
+
+.filterOverlay.isOpen {
+  display: block;
+}
+
+/* --- Media Query para Responsividade --- */
+
+@media (max-width: 992px) {
+  .pageContainer {
+    flex-direction: column; /* Coloca a sidebar e o conteúdo em coluna */
+    gap: 0;
+  }
+
+  .mobileFilterButton {
+    display: flex; /* Exibe o botão "Filtrar" */
+  }
+
+  .filtersAside {
+    position: fixed; /* Transforma a sidebar em um painel off-canvas */
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* Começa escondido à esquerda */
+    width: 85%;
+    max-width: 320px; /* Largura máxima do painel */
+    height: 100vh; /* Altura total da tela */
+    background-color: var(--white-color, #FFFFFF);
+    z-index: 1001; /* Fica acima do overlay */
+    transition: transform 0.3s ease-in-out;
+    padding: 20px;
+    overflow-y: auto; /* Permite scroll dentro do painel de filtros */
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+  }
+
+  .filtersAside.isOpen {
+    transform: translateX(0); /* Desliza o painel para a tela */
+  }
+
+  .mainContent {
+    width: 100%; /* Conteúdo principal ocupa toda a largura */
+  }
+
+  /* Adicionando um botão de fechar dentro da sidebar móvel */
+  .closeFiltersButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--dark-gray-2-color, #474747);
+  }
+}

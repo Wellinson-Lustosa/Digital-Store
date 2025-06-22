@@ -1,0 +1,58 @@
+{
+  "products": [
+    {
+      "id": "plp1",
+      "name": "Camisa Minimalista Branca",
+      "image": "/images/products/product-thumb-1.jpeg",
+      "price": 180,
+      "priceDiscount": 129.9,
+      "category": "camisetas",
+      "brand": "ds-brand",
+      "color": "branco",
+      "description": "Algodão egípcio com toque macio. Perfeita para um look clean e profissional.",
+      "galleryImages": [
+        { "src": "/images/products/product-image-1.pjeg" },
+        { "src": "/images/products/product-image-2.jpeg" }
+      ],
+      "sizes": ["P", "M", "G"],
+      "colors": ["#FFFFFF", "#000000"],
+      "averageRating": 4.8,
+      "totalReviews": 120,
+      "sku": "SKU-CMB-01"
+    },
+    {
+      "id": "plp2",
+      "name": "Calça Chino Bege",
+      "image": "/images/products/product-thumb-2.jpeg",
+      "price": 220,
+      "priceDiscount": null,
+      "category": "calcas",
+      "brand": "cool-brand",
+      "color": "bege",
+      "description": "Sarja confortável para o dia a dia, com excelente caimento e versatilidade.",
+      "galleryImages": [{ "src": "/images/products/product-image-2.jpeg" }],
+      "sizes": ["38", "40", "42", "44"],
+      "colors": ["#F5F5DC"],
+      "averageRating": 4.6,
+      "totalReviews": 85,
+      "sku": "SKU-CCB-02"
+    },
+    {
+      "id": "plp3",
+      "name": "Sapato Oxford Preto Couro",
+      "image": "/images/products/product-thumb-3.pjeg",
+      "price": 350,
+      "priceDiscount": 299.5,
+      "category": "sapatos",
+      "brand": "xyz",
+      "color": "preto",
+      "description": "Couro legítimo, elegância e durabilidade para ocasiões formais.",
+      "galleryImages": [{ "src": "/images/products/product-image-3.pjeg" }],
+      "sizes": ["39", "40", "41", "42", "43"],
+      "colors": ["#000000"],
+      "averageRating": 4.9,
+      "totalReviews": 150,
+      "sku": "SKU-SOP-03"
+    }
+  ]
+}

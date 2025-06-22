@@ -1,97 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import { useLocation } from 'react-router-dom';
+import { useSearchParams } from "react-router-dom";
 import ProductListing from "../../components/ProductListing/ProductListing";
 import FilterGroup from "../../components/FilterGroup/FilterGroup";
 import Section from "../../components/Section/Section";
 import styles from "./ProductListingPage.module.css";
-// import { ReactComponent as FilterIcon } from '../../assets/icons/filter-icon.svg';
+import { getProducts } from "../../services/apis";
 
-// Importe as imagens de produto para o mock
-import productThumb1 from "../../assets/products/product-thumb-1.jpeg";
-import productThumb2 from "../../assets/products/product-thumb-2.jpeg";
-import productThumb3 from "../../assets/products/product-thumb-3.jpeg";
-import productThumb4 from "../../assets/products/product-thumb-4.jpeg";
-import productThumb5 from "../../assets/products/product-thumb-5.jpeg";
-
-// Mock de dados completo para produtos
-const allProductsMock = [
-  {
-    id: "plp1",
-    name: "Camisa Minimalista Branca",
-    image: productThumb1,
-    price: 180,
-    priceDiscount: 129.9,
-    category: "camisetas",
-    brand: "ds-brand",
-    color: "branco",
-  },
-  {
-    id: "plp2",
-    name: "Calça Chino Bege",
-    image: productThumb2,
-    price: 220,
-    category: "calcas",
-    brand: "cool-brand",
-    color: "bege",
-  },
-  {
-    id: "plp3",
-    name: "Sapato Oxford Preto",
-    image: productThumb3,
-    price: 350,
-    priceDiscount: 299.5,
-    category: "sapatos",
-    brand: "xyz",
-    color: "preto",
-  },
-  {
-    id: "plp4",
-    name: "Cinto Couro Marrom",
-    image: productThumb4,
-    price: 95,
-    category: "acessorios",
-    brand: "ds-brand",
-    color: "marrom",
-  },
-  {
-    id: "plp5",
-    name: "Camisa Polo Azul Royal",
-    image: productThumb5,
-    price: 150,
-    category: "camisetas",
-    brand: "cool-brand",
-    color: "azul",
-  },
-  {
-    id: "plp6",
-    name: "Blazer Preto Elegante",
-    image: productThumb1,
-    price: 450,
-    category: "blazers",
-    brand: "xyz",
-    color: "preto",
-  },
-  {
-    id: "plp7",
-    name: "Calça Jeans Escura",
-    image: productThumb2,
-    price: 190,
-    category: "calcas",
-    brand: "ds-brand",
-    color: "preto",
-  },
-  {
-    id: "plp8",
-    name: "Tênis Casual Branco",
-    image: productThumb3,
-    price: 280,
-    category: "sapatos",
-    brand: "cool-brand",
-    color: "branco",
-  },
-];
-
-// Mock de filtros
 const categoryFilterOptions = {
   title: "Categorias",
   inputType: "checkbox",
@@ -117,63 +31,62 @@ const brandFilterOptions = {
   ],
 };
 
-const colorFilterOptions = {
-  title: "Cor",
-  inputType: "checkbox",
-  name: "color-filter",
-  options: [
-    { text: "Branco", value: "branco" },
-    { text: "Preto", value: "preto" },
-    { text: "Azul", value: "azul" },
-    { text: "Bege", value: "bege" },
-    { text: "Marrom", value: "marrom" },
-  ],
-};
-
 const ProductListingPage = () => {
-  const [productsToDisplay, setProductsToDisplay] = useState(allProductsMock);
+  const [allProducts, setAllProducts] = useState([]);
+  const [productsToDisplay, setProductsToDisplay] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [sortOrder, setSortOrder] = useState("relevance");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    let processedProducts = [...allProductsMock];
+    const fetchProducts = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const productsData = await getProducts();
+        setAllProducts(productsData);
+      } catch (err) {
+        setError(
+          "Não foi possível carregar os produtos. Tente novamente mais tarde."
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
-    // Filtro de Categoria
+  useEffect(() => {
+    let processedProducts = [...allProducts];
+    const searchTermFromUrl = searchParams.get("filter");
+
+    if (searchTermFromUrl) {
+      processedProducts = processedProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchTermFromUrl.toLowerCase())
+      );
+    }
     if (selectedCategories.length > 0) {
       processedProducts = processedProducts.filter((product) =>
         selectedCategories.includes(product.category)
       );
     }
-
-    // Filtro de Marca
     if (selectedBrand && selectedBrand !== "") {
       processedProducts = processedProducts.filter(
         (product) => product.brand === selectedBrand
       );
     }
-
-    // Filtro de Cor
-    if (selectedColors.length > 0) {
-      processedProducts = processedProducts.filter((product) =>
-        selectedColors.includes(product.color)
-      );
-    }
-
-    // Ordenação
     switch (sortOrder) {
       case "price_asc":
         processedProducts.sort(
-          (a, b) =>
-            (a.priceDiscount ?? a.price) - (b.priceDiscount ?? b.price)
+          (a, b) => (a.priceDiscount ?? a.price) - (b.priceDiscount ?? b.price)
         );
         break;
       case "price_desc":
         processedProducts.sort(
-          (a, b) =>
-            (b.priceDiscount ?? b.price) - (a.priceDiscount ?? a.price)
+          (a, b) => (b.priceDiscount ?? b.price) - (a.priceDiscount ?? a.price)
         );
         break;
       case "name_asc":
@@ -185,21 +98,8 @@ const ProductListingPage = () => {
       default:
       // Mantém a ordem original
     }
-
     setProductsToDisplay(processedProducts);
-  }, [sortOrder, selectedCategories, selectedBrand, selectedColors]);
-
-  // Bloqueia o scroll do body quando o painel de filtros está aberto no mobile
-  useEffect(() => {
-    if (isFiltersOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isFiltersOpen]);
+  }, [searchParams, sortOrder, selectedCategories, selectedBrand, allProducts]);
 
   const productCount = productsToDisplay.length;
   const resultsTitle =
@@ -209,31 +109,31 @@ const ProductListingPage = () => {
         }`
       : "Nenhum produto encontrado com os filtros atuais";
 
+  if (isLoading) {
+    return (
+      <Section title="Carregando Produtos..." noBorderTop>
+        <p style={{ textAlign: "center" }}>Por favor, aguarde...</p>
+      </Section>
+    );
+  }
+  if (error) {
+    return (
+      <Section title="Ocorreu um Erro" noBorderTop>
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--error-color)",
+          }}
+        >
+          {error}
+        </p>
+      </Section>
+    );
+  }
+
   return (
     <div className={styles.pageContainer}>
-      {/* Overlay para fechar o painel de filtros no mobile */}
-      <div
-        className={`${styles.filterOverlay} ${
-          isFiltersOpen ? styles.isOpen : ""
-        }`}
-        onClick={() => setIsFiltersOpen(false)}
-      />
-
-      {/* Painel de filtros lateral (sidebar ou drawer mobile) */}
-      <aside
-        className={`${styles.filtersAside} ${
-          isFiltersOpen ? styles.isOpen : ""
-        }`}
-      >
-        <button
-          onClick={() => setIsFiltersOpen(false)}
-          className={styles.closeFiltersButton}
-          aria-label="Fechar filtros"
-        >
-          &times;
-        </button>
-
-        {/* Ordenar por */}
+      <aside className={styles.filtersAside}>
         <div className={styles.sortSectionContainer}>
           <label htmlFor="sort-order-select" className={styles.sortLabel}>
             Ordenar por:
@@ -251,17 +151,11 @@ const ProductListingPage = () => {
             <option value="name_desc">Nome (Z-A)</option>
           </select>
         </div>
-
-        {/* Filtrar por */}
         <div className={styles.filterSectionContainer}>
           <h3 className={styles.filterSectionOverallTitle}>Filtrar por</h3>
           <hr className={styles.filterDivider} />
-
           <FilterGroup
-            title={categoryFilterOptions.title}
-            inputType={categoryFilterOptions.inputType}
-            name={categoryFilterOptions.name}
-            options={categoryFilterOptions.options}
+            {...categoryFilterOptions}
             selectedValues={selectedCategories}
             onFilterChange={(value, isChecked) => {
               setSelectedCategories((prev) =>
@@ -272,39 +166,13 @@ const ProductListingPage = () => {
             }}
           />
           <FilterGroup
-            title={brandFilterOptions.title}
-            inputType={brandFilterOptions.inputType}
-            name={brandFilterOptions.name}
-            options={brandFilterOptions.options}
+            {...brandFilterOptions}
             selectedValues={selectedBrand}
             onFilterChange={(value) => setSelectedBrand(value)}
           />
-          <FilterGroup
-            title={colorFilterOptions.title}
-            inputType={colorFilterOptions.inputType}
-            name={colorFilterOptions.name}
-            options={colorFilterOptions.options}
-            selectedValues={selectedColors}
-            onFilterChange={(value, isChecked) => {
-              setSelectedColors((prev) =>
-                isChecked
-                  ? [...prev, value]
-                  : prev.filter((item) => item !== value)
-              );
-            }}
-          />
         </div>
       </aside>
-
       <main className={styles.mainContent}>
-        {/* Botão para abrir filtros no mobile */}
-        <button
-          className={styles.mobileFilterButton}
-          onClick={() => setIsFiltersOpen(true)}
-        >
-          {/* <FilterIcon /> */}
-          <span>Filtrar e Ordenar</span>
-        </button>
         <Section title={resultsTitle} titleAlign="left" noBorderTop>
           <ProductListing products={productsToDisplay} />
         </Section>

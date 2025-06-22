@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 // 1. Importe o CSS Module
 import styles from "./ProductOptions.module.css";
 
@@ -11,9 +11,6 @@ const ProductOptions = ({
   onOptionSelect, // Função callback: (selectedValue) => void
   optionGroupName, // Nome do grupo de opções, para acessibilidade
 }) => {
-  // Estado para armazenar as opções selecionadas. Ex: { Cor: 'Azul', Tamanho: 'M' }
-  const [selectedOptions, setSelectedOptions] = useState({});
-
   // Inicializa as opções selecionadas com o primeiro valor de cada grupo, se desejado
   useEffect(() => {
     if (options && options.length > 0) {
@@ -24,33 +21,14 @@ const ProductOptions = ({
           // initialSelections[option.name] = option.values[0];
         }
       });
-      setSelectedOptions(initialSelections);
       if (onOptionSelect && Object.keys(initialSelections).length > 0) {
         // onOptionChange(initialSelections); // Descomente se quiser notificar a seleção inicial
       }
     }
-  }, [options]); // Executa quando 'options' muda (raro, mas para robustez)
-
-  const handleOptionClick = (optionName, value) => {
-    const newSelectedOptions = {
-      ...selectedOptions,
-      [optionName]: value,
-    };
-    setSelectedOptions(newSelectedOptions);
-
-    // Notifica o componente pai sobre a mudança de opção, se a prop for fornecida
-    if (onOptionSelect) {
-      onOptionSelect(newSelectedOptions);
-    }
-    // console.log('Opções selecionadas:', newSelectedOptions); // Para debug
-  };
+  }, [options, onOptionSelect]); // Executa quando 'options' muda (raro, mas para robustez)
 
   if (!options || options.length === 0) {
-    return (
-      <p className={styles.noOptionsText}>
-        Nenhuma variação disponível.
-      </p>
-    );
+    return <p className={styles.noOptionsText}>Nenhuma variação disponível.</p>;
   }
 
   return (
@@ -96,13 +74,9 @@ const ProductOptions = ({
             role="radio"
             aria-checked={isSelected}
             aria-label={
-              type === "color"
-                ? `Cor ${optionValue}`
-                : `Opção ${optionValue}`
+              type === "color" ? `Cor ${optionValue}` : `Opção ${optionValue}`
             }
-            title={
-              type === "color" ? `Cor ${optionValue}` : optionValue
-            }
+            title={type === "color" ? `Cor ${optionValue}` : optionValue}
           >
             {type === "text" ? optionValue : null}
             {/* Para type="color", o conteúdo visual é o background. */}

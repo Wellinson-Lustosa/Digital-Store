@@ -1,7 +1,6 @@
 // src/components/Gallery/Gallery.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Gallery.module.css";
-
 // Importe os SVGs das setas (ajuste o caminho se os assets não estiverem na raiz de src/assets/icons)
 // Certifique-se de que esses arquivos SVG existem na pasta 'src/assets/icons/'
 import { ReactComponent as ArrowLeftIcon } from "../../assets/icons/arrow-left.svg";

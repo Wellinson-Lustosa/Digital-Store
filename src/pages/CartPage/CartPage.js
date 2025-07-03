@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import Section from "../../components/Section/Section";
 import styles from "./CartPage.module.css";
@@ -7,8 +7,13 @@ import styles from "./CartPage.module.css";
 const CartPage = () => {
   const { cartItems, removeFromCart, updateQuantity, clearCart, cartTotal } =
     useCart();
+  const navigate = useNavigate();
 
   const formatCurrency = (value) => `R$ ${value.toFixed(2).replace(".", ",")}`;
+
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -98,7 +103,7 @@ const CartPage = () => {
             ))}
           </div>
 
-          <div className={styles.cartSummary}>
+          <aside className={styles.cartSummary}>
             <h2 className={styles.summaryTitle}>Resumo do Pedido</h2>
             <div className={styles.summaryLine}>
               <span>Subtotal</span>
@@ -112,7 +117,11 @@ const CartPage = () => {
               <span>Total</span>
               <span>{formatCurrency(cartTotal)}</span>
             </div>
-            <button className={styles.checkoutButton} type="button">
+            <button
+              className={styles.checkoutButton}
+              type="button"
+              onClick={handleCheckout}
+            >
               Finalizar Compra
             </button>
             <button
@@ -122,7 +131,7 @@ const CartPage = () => {
             >
               Esvaziar Carrinho
             </button>
-          </div>
+          </aside>
         </div>
       </Section>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout/Layout";
+import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import ProductListingPage from "./pages/ProductListingPage/ProductListingPage";
 import ProductViewPage from "./pages/ProductViewPage/ProductViewPage";
@@ -18,7 +18,9 @@ import TermsOfServicePage from "./pages/TermsOfServicePage/TermsOfServicePage";
 import CartPage from "./pages/CartPage/CartPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from './pages/RegisterPage/RegisterPage';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'; // 1. Importe o ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import CheckoutPage from './pages/CheckoutPage/CheckoutPage';
+import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmationPage';
 
 // Placeholder para páginas ainda não completamente desenvolvidas (ex: Login, Cadastro)
 const PlaceholderPage = ({ title }) => (
@@ -61,6 +63,22 @@ function App() {
           element={
             <ProtectedRoute>
               <WishlistPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/order-confirmation"
+          element={
+            <ProtectedRoute>
+              <OrderConfirmationPage />
             </ProtectedRoute>
           }
         />

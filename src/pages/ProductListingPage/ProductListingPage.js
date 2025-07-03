@@ -4,7 +4,7 @@ import ProductListing from "../../components/ProductListing/ProductListing";
 import FilterGroup from "../../components/FilterGroup/FilterGroup";
 import Section from "../../components/Section/Section";
 import styles from "./ProductListingPage.module.css";
-import { getProducts } from "../../services/apis";
+import { getProducts } from "../../services/api";
 
 const categoryFilterOptions = {
   title: "Categorias",

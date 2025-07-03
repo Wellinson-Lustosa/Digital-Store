@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import Section from '../../components/Section/Section';
 import styles from './RegisterPage.module.css';
 
 const RegisterPage = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   
   const { register, isAuthenticated } = useAuth();
@@ -26,24 +26,26 @@ const RegisterPage = () => {
     setError(''); // Limpa erros anteriores
 
     // Validações básicas
-    if (!name || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !password) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-    if (password !== confirmPassword) {
-      setError('As senhas não coincidem.');
+    if (password.length < 6) {
+      setError('A senha deve ter pelo menos 6 caracteres.');
       return;
     }
 
     // A função register no nosso contexto é simulada.
     try {
-      const registerSuccess = await register(name, email, password);
-      if (!registerSuccess) {
-        setError('Não foi possível realizar o cadastro. Tente outro e-mail.');
+      const userData = { firstName, lastName, email, password };
+      const registerSuccess = await register(userData);
+
+      if (registerSuccess) {
+        alert('Cadastro realizado com sucesso! Por favor, faça o login.');
+        navigate('/login');
       }
-      // O useEffect acima cuidará do redirecionamento após o estado de autenticação mudar.
     } catch (err) {
-      setError('Ocorreu um erro ao tentar realizar o cadastro. Tente novamente.');
+      setError(err.message);
     }
   };
 
@@ -54,14 +56,26 @@ const RegisterPage = () => {
           <h2 className={styles.formTitle}>Criar Conta</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
-              <label htmlFor="name" className={styles.formLabel}>Nome Completo:</label>
+              <label htmlFor="firstName" className={styles.formLabel}>Nome:</label>
               <input
                 type="text"
-                id="name"
+                id="firstName"
                 className={styles.formInput}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Seu nome completo"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="Seu nome"
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="lastName" className={styles.formLabel}>Sobrenome:</label>
+              <input
+                type="text"
+                id="lastName"
+                className={styles.formInput}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Seu sobrenome"
                 required
               />
             </div>
@@ -86,18 +100,6 @@ const RegisterPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Mínimo 6 caracteres"
-                required
-              />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="confirmPassword" className={styles.formLabel}>Confirme sua Senha:</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                className={styles.formInput}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Repita a senha"
                 required
               />
             </div>

@@ -54,5 +54,19 @@
       "totalReviews": 150,
       "sku": "SKU-SOP-03"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Usuário Teste",
+      "email": "teste@email.com",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Wellinson",
+      "email": "wellinson@email.com",
+      "password": "senha"
+    }
   ]
 }

@@ -4,7 +4,7 @@ import ProductDetails from "../../components/ProductDetails/ProductDetails";
 import Section from "../../components/Section/Section";
 import ProductListing from "../../components/ProductListing/ProductListing";
 import styles from "./ProductViewPage.module.css";
-import { getProductById, getProducts } from "../../services/apis";
+import { getProductById, getProducts } from "../../services/api";
 
 const ProductViewPage = () => {
   const { productId } = useParams();

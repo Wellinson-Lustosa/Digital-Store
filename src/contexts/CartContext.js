@@ -4,9 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const CartContext = createContext();
 
 // 2. Cria um Hook customizado para facilitar o uso do contexto
-export const useCart = () => {
-  return useContext(CartContext);
-};
+export const useCart = () => useContext(CartContext);
 
 // 3. Cria o Provedor do Contexto (CartProvider)
 export const CartProvider = ({ children }) => {
@@ -17,7 +15,7 @@ export const CartProvider = ({ children }) => {
       const localData = localStorage.getItem('digitalStoreCart');
       return localData ? JSON.parse(localData) : [];
     } catch (error) {
-      console.error("Erro ao carregar carrinho do localStorage:", error);
+      console.error('Erro ao carregar carrinho do localStorage:', error);
       return [];
     }
   });
@@ -29,11 +27,13 @@ export const CartProvider = ({ children }) => {
 
   // Função para adicionar item ao carrinho
   const addToCart = (product, quantity = 1, selectedOptions = {}) => {
-    setCartItems(prevItems => {
+    setCartItems((prevItems) => {
       // Identificador único para a variação do produto (produtoId + opções)
       // Se não houver opções, podemos usar apenas o product.id ou um identificador padrão.
       const variantId = `${product.id}-${Object.values(selectedOptions).sort().join('-')}`;
-      const existingItemIndex = prevItems.findIndex(item => item.variantId === variantId);
+      const existingItemIndex = prevItems.findIndex(
+        (item) => item.variantId === variantId
+      );
 
       if (existingItemIndex > -1) {
         // Se o item (com as mesmas opções) já existe, atualiza a quantidade
@@ -42,15 +42,19 @@ export const CartProvider = ({ children }) => {
         return updatedItems;
       } else {
         // Adiciona novo item ao carrinho
-        return [...prevItems, { ...product, quantity, selectedOptions, variantId }];
+        return [
+          ...prevItems,
+          { ...product, quantity, selectedOptions, variantId },
+        ];
       }
     });
-    console.log(`Produto adicionado ao carrinho: ${product.name}`, selectedOptions, `Qtd: ${quantity}`);
   };
 
   // Função para remover item do carrinho (pelo variantId)
   const removeFromCart = (variantIdToRemove) => {
-    setCartItems(prevItems => prevItems.filter(item => item.variantId !== variantIdToRemove));
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.variantId !== variantIdToRemove)
+    );
   };
 
   // Função para atualizar a quantidade de um item
@@ -58,14 +62,16 @@ export const CartProvider = ({ children }) => {
     if (newQuantity <= 0) {
       removeFromCart(variantIdToUpdate); // Remove se a quantidade for 0 ou menor
     } else {
-      setCartItems(prevItems =>
-        prevItems.map(item =>
-          item.variantId === variantIdToUpdate ? { ...item, quantity: newQuantity } : item
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.variantId === variantIdToUpdate
+            ? { ...item, quantity: newQuantity }
+            : item
         )
       );
     }
   };
-  
+
   // Função para limpar o carrinho
   const clearCart = () => {
     setCartItems([]);
@@ -75,12 +81,15 @@ export const CartProvider = ({ children }) => {
   // Para o ícone, geralmente é o número de itens únicos ou a soma das quantidades.
   // O README seção 3.1.4 menciona um ícone, mas não se ele mostra contagem.
   // Vamos fazer a contagem total de unidades.
-  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartItemCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   
   // Calcula o valor total do carrinho
   const cartTotal = cartItems.reduce((total, item) => {
     const priceToUse = item.priceDiscount ?? item.price; // Usa preço com desconto se disponível
-    return total + (priceToUse * item.quantity);
+    return total + priceToUse * item.quantity;
   }, 0);
 
   const value = {

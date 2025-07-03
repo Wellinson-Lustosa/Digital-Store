@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Mudado de 'email' para 'username'
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login, isAuthenticated } = useAuth();
@@ -14,9 +14,8 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // 1. Obtém a página de origem do estado da localização, ou a home como padrão
+      // Redireciona para a página anterior ou para a home após login
       const from = location.state?.from?.pathname || '/';
-      // 2. Redireciona o usuário para a página de onde ele veio
       navigate(from, { replace: true });
     }
   }, [isAuthenticated, navigate, location]);
@@ -25,21 +24,15 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
 
-    if (!email || !password) {
-      setError('Por favor, preencha todos os campos.');
-      return;
-    }
-
     try {
-      const loginSuccess = await login(email, password);
-      if (!loginSuccess) {
-        setError('Email ou senha inválidos.');
-      }
-      // O useEffect acima cuidará do redirecionamento
+      await login(username, password);
+      // Se o login for bem-sucedido, o useEffect cuidará do redirecionamento
     } catch (err) {
-      setError('Ocorreu um erro ao tentar fazer login. Tente novamente.');
+      setError(err.message); // Exibe o erro vindo do AuthContext/API
     }
   };
+
+  // Para testar, use um usuário da DummyJSON, ex: kminchelle / 0lelplR
 
   return (
     <div className={styles.pageContainer}>
@@ -48,14 +41,15 @@ const LoginPage = () => {
           <h2 className={styles.formTitle}>Acessar Conta</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.formGroup}>
-              <label htmlFor="email" className={styles.formLabel}>E-mail:</label>
+              {/* Label e input atualizados para Nome de Usuário */}
+              <label htmlFor="username" className={styles.formLabel}>Nome de Usuário:</label>
               <input
-                type="email"
-                id="email"
+                type="text"
+                id="username"
                 className={styles.formInput}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="seuemail@exemplo.com"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="ex: kminchelle"
                 required
               />
             </div>
@@ -67,7 +61,7 @@ const LoginPage = () => {
                 className={styles.formInput}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="********"
+                placeholder="ex: 0lelplR"
                 required
               />
             </div>
